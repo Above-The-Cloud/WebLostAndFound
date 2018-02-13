@@ -35,7 +35,7 @@ if($retval)
 	echo "原始数据库删除成功\n","<br>";
 }
 
-$sql = 'CREATE DATABASE lostfound';
+$sql = 'CREATE DATABASE lostfound  DEFAULT CHARACTER SET utf8';
 $retval = mysqli_query($conn,$sql );
 if(! $retval )
 {
