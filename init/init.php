@@ -45,11 +45,14 @@ echo "数据库 lostfound 创建成功\n","<br>";
 
 mysqli_select_db($conn, 'lostfound' );
 
+
+
+//
 //创建表user_info
 $sql = "CREATE TABLE user_info( ".
         "user_id BIGINT NOT NULL, ".
-        "user_name VARCHAR(100) NOT NULL, ".
-        "user_password VARCHAR(100) NOT NULL, ".
+        "openid VARCHAR(100) NOT NULL, ".
+        //"user_password VARCHAR(100) NOT NULL, ".
         "submission_time DATETIME, ".
         "PRIMARY KEY ( user_id ))ENGINE=InnoDB DEFAULT CHARSET=utf8; ";
 $retval = mysqli_query($conn,$sql );
@@ -61,14 +64,12 @@ echo "数据表 user_info 创建成功\n","<br>";
 
 //插入初始测试数据
 $user_id = 10152150127;
-$user_password = '123456';
-$user_name = '壹汪春雨';
-$submission_time = '2017-12-03 12:00:00';
+$openid = 'openid';
 $submission_time = date("Y-m-d h:m:s");
 $sql = "INSERT INTO user_info ".
-        "(user_id,user_password, user_name, submission_time) ".
+        "(user_id, openid, submission_time) ".
         "VALUES ".
-        "('$user_id','$user_password','$user_name', '$submission_time')";
+        "('$user_id','$openid', '$submission_time')";
 $retval = mysqli_query( $conn, $sql );
 if(! $retval )
 {
@@ -168,5 +169,35 @@ if(! $retval )
   die('comment无法插入数据: ' . mysqli_error($conn));
 }
 echo "comment 数据插入成功\n","<br>";
+
+
+
+
+//创建学生数据表
+$sql = "CREATE TABLE student( ".
+		"stu_id VARCHAR(20) NOT NULL, ".
+        "stu_pass VARCHAR(40) ,".
+        "submission_time DATETIME, ".
+        "PRIMARY KEY ( stu_id ))ENGINE=InnoDB DEFAULT CHARSET=utf8; ";
+$retval = mysqli_query($conn,$sql );
+if(! $retval )
+{
+    die('数据表 student 创建失败: ' . mysqli_error($conn));
+}
+echo "数据表 student 创建成功\n","<br>";
+
+//comment插入初始测试数据
+$sql = "INSERT INTO student ".
+        "(stu_id, stu_pass, submission_time) ".
+        "VALUES ".
+        "(10152150127, '123456', current_time())";
+$retval = mysqli_query( $conn, $sql );
+if(! $retval )
+{
+  die('student无法插入数据: ' . mysqli_error($conn));
+}
+echo "student 数据插入成功\n","<br>";
+
+
 mysqli_close($conn);
 ?>
