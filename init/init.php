@@ -78,6 +78,26 @@ if(! $retval )
 echo "数据插入成功\n","<br>";
 
 
+
+//创建表contact
+$sql = "CREATE TABLE contact(".
+		"user_id BIGINT NOT NULL ,".
+		"type VARCHAR(100) NOT NULL,".
+		"value VARCHAR(100), ".
+		"submission_time DATETIME,".
+		"PRIMARY KEY(user_id,type))ENGINE=InnoDB DEFAULT CHARSET=utf8; ";
+
+$retval = mysqli_query($conn,$sql );
+if(! $retval )
+{
+    die('数据表contact创建失败: ' . mysqli_error($conn));
+}
+echo "数据表 contact 创建成功\n","<br>";
+
+
+
+
+
 //创建表image
 
 $sql = "CREATE TABLE image (".  
@@ -186,7 +206,7 @@ if(! $retval )
 }
 echo "数据表 student 创建成功\n","<br>";
 
-//comment插入初始测试数据
+//student插入初始测试数据
 $sql = "INSERT INTO student ".
         "(stu_id, stu_pass, submission_time) ".
         "VALUES ".
