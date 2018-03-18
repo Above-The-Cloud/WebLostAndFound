@@ -1,5 +1,5 @@
 <?php
-include 'conn.php';
+include '../conn.php';
 $extension = "";
 echo json_encode($_FILES);
 echo json_encode($_POST);  

@@ -52,6 +52,8 @@ mysqli_select_db($conn, 'lostfound' );
 $sql = "CREATE TABLE user_info( ".
         "user_id BIGINT NOT NULL, ".
         "openid VARCHAR(100) NOT NULL, ".
+		"nickName varchar(100) NOT NULL, ".
+		"avatarUrl varchar(200) NOT NULL, ".
         //"user_password VARCHAR(100) NOT NULL, ".
         "submission_time DATETIME, ".
         "PRIMARY KEY ( user_id ))ENGINE=InnoDB DEFAULT CHARSET=utf8; ";
@@ -62,26 +64,12 @@ if(! $retval )
 }
 echo "数据表 user_info 创建成功\n","<br>";
 
-//插入初始测试数据
-$user_id = 10152150127;
-$openid = 'openid';
-$submission_time = date("Y-m-d h:m:s");
-$sql = "INSERT INTO user_info ".
-        "(user_id, openid, submission_time) ".
-        "VALUES ".
-        "('$user_id','$openid', '$submission_time')";
-$retval = mysqli_query( $conn, $sql );
-if(! $retval )
-{
-  die('无法插入数据: ' . mysqli_error($conn));
-}
-echo "数据插入成功\n","<br>";
 
 
 
 //创建表contact
 $sql = "CREATE TABLE contact(".
-		"user_id BIGINT NOT NULL ,".
+		"user_id BIGINT NOT NULL preferences user_info ,".
 		"type VARCHAR(100) NOT NULL,".
 		"value VARCHAR(100), ".
 		"submission_time DATETIME,".
