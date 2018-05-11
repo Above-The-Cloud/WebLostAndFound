@@ -37,6 +37,7 @@ if (mysqli_num_rows($res) > 0) {
       $publish->image_exist = $row["image_exist"];
       $publish->submission_time = $row["submission_time"];
 	  
+
 	  $sql_info = "select * from user_info where user_id = '$publish->user_id';";
 	  $res_info = mysqli_query( $conn, $sql_info );
 	  if (mysqli_num_rows($res) > 0) {
@@ -45,6 +46,7 @@ if (mysqli_num_rows($res) > 0) {
 			$publish->avatarUrl = $row["avatarUrl"];	
 		}
 	  }	
+
       $sql_image = "SELECT * FROM image WHERE publish_id= '$tmp_id';";
       $res_image = mysqli_query( $conn, $sql_image );
       if (mysqli_num_rows($res_image) > 0) {
