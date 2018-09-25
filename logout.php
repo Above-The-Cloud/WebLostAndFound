@@ -1,18 +1,12 @@
 <?php
 
-include '../conn.php';
+include '/conn.php';
 //echo json_encode($_GET);
-$user_id = $_GET['user_id'];
+$openid = $_GET['openid'];
 $data='success';
-$sql = "delete from user_openid where use_id = '$user_id'";
+$sql = "delete from user_openid where openid = '$openid'";
 $res = mysqli_query( $conn, $sql );
-if (mysqli_num_rows($res) > 0) {
-     echo json_encode($data);   
-}
-else {
-	$data='failure';
-	echo json_encode($data);   
-}
+echo($res);
 mysqli_close($conn);
 
 ?>
