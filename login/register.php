@@ -25,6 +25,8 @@ $params = [
 //if (mysqli_num_rows($res) > 0) {
 list($code, $msg, $data)=lib\Caller::request_post($url, $params);
 $res=json_decode($data, true);
+echo json_encode($res);
+
 if($res['ret']==1){
 	$tag="registered";
 	$sql_user_info = "select * from user_info where user_id = '$stu_id';";
