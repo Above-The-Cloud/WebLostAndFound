@@ -1,6 +1,9 @@
 <?php
 
 include '../conn.php';
+require_once "../lib/Caller.php";
+use WebLostAndFound\lib;
+
 $true = 'true';
 $false = 'false';
 //echo json_encode($_GET);
@@ -11,9 +14,18 @@ $openid = $_GET['openid'];
 $nickName = $_GET['nickName'];
 $avatarUrl = $_GET['avatarUrl'];
 $tag=0;
-$sql = "select * from student where stu_id = '$stu_id' and stu_pass='$stu_pass';";
-$res = mysqli_query( $conn, $sql );
-if (mysqli_num_rows($res) > 0) {
+$url = 'http://202.120.82.2:8081/ClientWeb/pro/ajax/login.aspx';
+$params = [
+    "id"=>$stu_id,
+    "pwd"=>$stu_pass,
+    "act"=>'login'
+    ];
+//$sql = "select * from student where stu_id = '$stu_id' and stu_pass='$stu_pass';";
+//$res = mysqli_query( $conn, $sql );
+//if (mysqli_num_rows($res) > 0) {
+list($code, $msg, $data)=lib\Caller::request_post($url, $params);
+$res=json_decode($data, true);
+if($res['ret']==1){
 	$tag="registered";
 	$sql_user_info = "select * from user_info where user_id = '$stu_id';";
 	$res_user_info = mysqli_query( $conn, $sql_user_info);
@@ -30,7 +42,5 @@ else{
 	echo json_encode($false);
 }
 mysqli_close($conn);
-
-
 
 ?>
