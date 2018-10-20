@@ -52,7 +52,7 @@ if($res_user['ret']==1){
     lib\Response::send(0, 'success',['tag'=>$tag, 'user'=>$res_user]);
 }
 else{
-    lib\Response::send(-1, '用户名或密码错误！',[$res]);
+    lib\Response::send(-1, '用户名或密码错误！',[$res_user]);
 	//echo json_encode($false);
 }
 mysqli_close($conn);
