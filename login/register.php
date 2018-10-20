@@ -26,7 +26,9 @@ $params = [
 list($code, $msg, $data)=lib\Caller::request_post($url, $params);
 $res=json_decode($data, true);
 //echo json_encode($res);
-
+if($code!=0){
+    lib\Response::send(-1, '网络错误',[$code, $msg, $data]);
+}
 if($res['ret']==1){
 	$tag="registered";
 	$sql_user_info = "select * from user_info where user_id = '$stu_id';";
@@ -34,14 +36,22 @@ if($res['ret']==1){
 	if(mysqli_num_rows($res_user_info) <=0){
 		$tag="unregistered";
 		$sql_insert_userinfo = "insert into user_info(user_id,nickName, avatarUrl, submission_time) VALUES ('$stu_id','$nickName', '$avatarUrl', current_time());";
-		mysqli_query( $conn, $sql_insert_userinfo);
+		$res = mysqli_query( $conn, $sql_insert_userinfo);
+		if($res==$false){
+            lib\Response::send(-2, 'fail',['sql'=>$sql_insert_userinfo,'error'=>mysqli_errno($conn)]);
+        }
 	}
     $sql_insert_openid = "insert into user_openid(user_id,openid, submission_time) VALUES ('$stu_id','$openid', current_time());";
-	mysqli_query( $conn, $sql_insert_openid );
-	echo json_encode($tag);
+    $res = mysqli_query( $conn, $sql_insert_openid );
+    if($res==$false){
+        lib\Response::send(-2, 'fail',['sql'=>$sql_insert_openid,'error'=>mysqli_errno($conn)]);
+    }
+	//echo json_encode($tag);
+    lib\Response::send(0, 'success',['tag'=>$tag]);
 }
 else{
-	echo json_encode($false);
+    lib\Response::send(-1, '用户名或密码错误！',[$res]);
+	//echo json_encode($false);
 }
 mysqli_close($conn);
 
