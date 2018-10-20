@@ -25,14 +25,14 @@ $params = [
 //$res = mysqli_query( $conn, $sql );
 //if (mysqli_num_rows($res) > 0) {
 list($code, $msg, $data)=lib\Caller::request_post($url, $params);
-$res=json_decode($data, true);
+$res_user=json_decode($data, true);
 //echo json_encode($res);
 if($code!=0){
     lib\Response::send(-1, '网络错误',[$code, $msg, $data]);
 }
-if($res['ret']==1){
+if($res_user['ret']==1){
 	$tag="registered";
-    $nickName = $res['data']['name'];
+    $nickName = $res_user['data']['name'];
 	$sql_user_info = "select * from user_info where user_id = '$stu_id';";
 	$res_user_info = mysqli_query( $conn, $sql_user_info);
 	if(mysqli_num_rows($res_user_info) <=0){
@@ -49,7 +49,7 @@ if($res['ret']==1){
         lib\Response::send(-2, 'fail',['sql'=>$sql_insert_openid,'error'=>mysqli_errno($conn)]);
     }
 	//echo json_encode($tag);
-    lib\Response::send(0, 'success',['tag'=>$tag]);
+    lib\Response::send(0, 'success',['tag'=>$tag, 'user'=>$res_user]);
 }
 else{
     lib\Response::send(-1, '用户名或密码错误！',[$res]);
