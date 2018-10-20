@@ -25,7 +25,7 @@ $params = [
 //if (mysqli_num_rows($res) > 0) {
 list($code, $msg, $data)=lib\Caller::request_post($url, $params);
 $res=json_decode($data, true);
-echo json_encode($res);
+//echo json_encode($res);
 
 if($res['ret']==1){
 	$tag="registered";
