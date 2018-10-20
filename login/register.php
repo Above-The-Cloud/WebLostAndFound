@@ -32,7 +32,7 @@ if($code!=0){
 }
 if($res['ret']==1){
 	$tag="registered";
-    $nickName = $res['ret']['name'];
+    $nickName = $res['data']['name'];
 	$sql_user_info = "select * from user_info where user_id = '$stu_id';";
 	$res_user_info = mysqli_query( $conn, $sql_user_info);
 	if(mysqli_num_rows($res_user_info) <=0){
