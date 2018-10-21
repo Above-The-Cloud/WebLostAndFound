@@ -57,8 +57,8 @@ if (mysqli_num_rows($res) > 0) {
         $data[]=$data_row;
     }
 }else{
-    lib\Response::send(-1,'fail',['sql'=>$sql, 'error'=>mysqli_errno($conn)]);
+    lib\Response::send(-1,'empty',[]);
 }
 
 mysqli_close($conn);
-lib\Response::send(0,'success:'.$sql.' '.$type.' '.$category,$data);
+lib\Response::send(0,'success',$data);
