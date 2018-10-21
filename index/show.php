@@ -10,8 +10,8 @@ include '../conn.php';
 require_once "../lib/Response.php";
 use WebLostAndFound\lib;
 
-$type = $_GET['type']??0;
-$category = $_GET['category']??0;
+$type = isset($_GET['type'])?$_GET['type']:0;
+$category = isset($_GET['category'])?$_GET['$category']:0;
 
 $where = ' ';
 if($type!=0&&$category!=0){
