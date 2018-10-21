@@ -57,4 +57,4 @@ if (mysqli_num_rows($res) > 0) {
 }
 
 mysqli_close($conn);
-lib\Response::send(0,'success:'.$sql,$data);
+lib\Response::send(0,'success:'.$sql.' '.$type.' '.$category,$data);
