@@ -18,10 +18,10 @@ if($type!=0&&$category!=0){
     $where = " where type='$type' and category='$category'";
 }else{
     if($type!=0){
-        $where = " where type='$type''";
+        $where = " where type='$type'";
     }
     if($category!=0){
-        $where = " where category='$category''";
+        $where = " where category='$category'";
     }
 }
 $sql = "SELECT * FROM publish ".$where." order by publish_id desc;";
