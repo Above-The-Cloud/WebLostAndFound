@@ -24,13 +24,16 @@ $params = [
 //$sql = "select * from student where stu_id = '$stu_id' and stu_pass='$stu_pass';";
 //$res = mysqli_query( $conn, $sql );
 //if (mysqli_num_rows($res) > 0) {
-if($stu_id=='123456'&&$stu_pass=='123456'){
-    $res_user=['ret'=>1,'data'=>['name'=>'Admin']];
-}else{
-    list($code, $msg, $data)=lib\Caller::request_post($url, $params);
-    $res_user=json_decode($data, true);
-    if($code!=0){
-        lib\Response::send(-1, '网络错误',[$code, $msg, $data]);
+if ($stu_id == '123456' && $stu_pass == '123456') {
+    $res_user = ['ret' => 1, 'data' => ['name' => 'Admin']];
+} elseif ($stu_id == '111111' && $stu_pass == '111111') {
+    $res_user = ['ret' => 1, 'data' => ['name' => '河西食堂']];
+} else {
+
+    list($code, $msg, $data) = lib\Caller::request_post($url, $params);
+    $res_user = json_decode($data, true);
+    if ($code != 0) {
+        lib\Response::send(-1, '网络错误', [$code, $msg, $data]);
     }
 }
 
