@@ -24,7 +24,7 @@ $res = \lib\SensitiveWordDetection::send($title.$msg);
 
 if($res['status']='00000'){
     if($res['result']==true){
-        $rr->send(-2,"您所发的内容包含敏感词！",$res);
+        $rr->send(-2,"您所发的内容包含敏感词汇！",$res);
     }
 }else{
     $rr->send(-1,"网络错误，请稍后重试！",$res);
@@ -41,6 +41,6 @@ $res = mysqli_query( $conn, $sql );
 $id = mysqli_insert_id($conn);
 //echo json_encode($id);
 mysqli_close($conn);
-$rr->send(0,"success",["id"=>$id]);
+$rr->send(0,"success",["publish_id"=>$id]);
 
 ?>
