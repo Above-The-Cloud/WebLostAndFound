@@ -24,6 +24,8 @@ $res = \lib\SensitiveWordDetection::send($title.$msg);
 if(!is_array($res)){
     $res=json_decode($res,true);
 }
+$rr->send(-1,"test",$res);
+
 if($res['status']='00000'){
     if($res['result']==true){
         $rr->send(-2,"您所发的内容包含敏感词！",$res);
