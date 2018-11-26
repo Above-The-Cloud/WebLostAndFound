@@ -21,9 +21,6 @@ $msg = $_GET['msg'];
 $ie = $_GET['image_exist'];
 
 $res = \lib\SensitiveWordDetection::send($title.$msg);
-if(!is_array($res)){
-    $res=json_decode($res,true);
-}
 $rr->send(-1,"test",$res);
 
 if($res['status']='00000'){

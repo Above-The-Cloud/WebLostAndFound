@@ -48,8 +48,13 @@ class SensitiveWordDetection
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         }
         curl_setopt($curl, CURLOPT_POSTFIELDS, $bodys);
-        $res = curl_exec($curl);
-        (new \lib\Log())->debug($res);
-        return $res;
+        $response = curl_exec($curl);
+        if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == '200') {
+            list($resHeader, $resBody) = explode("\r\n\r\n", $response, 2);
+        }
+        (new \lib\Log())->debug($response);
+        (new \lib\Log())->debug($resBody);
+        $resBody = json_decode($resBody,true);
+        return $resBody;
     }
 }
