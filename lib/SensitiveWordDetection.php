@@ -52,8 +52,6 @@ class SensitiveWordDetection
         if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == '200') {
             list($resHeader, $resBody) = explode("\r\n\r\n", $response, 2);
         }
-        (new \lib\Log())->debug($response);
-        (new \lib\Log())->debug($resBody);
         $resBody = json_decode($resBody,true);
         return $resBody;
     }
