@@ -7,3 +7,4 @@
  */
 require_once "Log.php";
 require_once "RR.php";
+require_once "SQLHelper.php";

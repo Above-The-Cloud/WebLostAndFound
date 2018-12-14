@@ -40,7 +40,7 @@ class RR
     public function finish($code=0, $msg='success', $data=[])
     {
         $res = ['code' => $code, 'msg' => $msg, 'data' => $data];
-        $this->log->info($this->interface."|response log|traceId:".$this->traceId."|"."return:".json_encode($res));
+        $this->log->info($this->interface."|response log|traceId:".$this->traceId."|"."return:".json_encode($res)."|request".json_encode($this->request));
         echo json_encode($res);
         exit;
     }
