@@ -47,13 +47,13 @@ if($res_user['ret']==1){
 		$sql_insert_userinfo = "insert into user_info(user_id,nickName, avatarUrl, submission_time) VALUES ('$stu_id','$nickName', '$avatarUrl', current_time());";
 		$res = mysqli_query( $conn, $sql_insert_userinfo);
 		if($res==false){
-            lib\Response::send(-2, 'fail',['sql'=>$sql_insert_userinfo,'res'=>$res, 'error'=>mysqli_errno($conn)]);
+            lib\Response::send(-2, 'fail,请联系管理员：ecnulostfound@163.com',['sql'=>$sql_insert_userinfo,'res'=>$res, 'error'=>mysqli_errno($conn)]);
         }
 	}
     $sql_insert_openid = "insert into user_openid(user_id,openid, submission_time) VALUES ('$stu_id','$openid', current_time());";
     $res = mysqli_query( $conn, $sql_insert_openid );
     if($res==false){
-        lib\Response::send(-2, 'fail',['sql'=>$sql_insert_openid,'error'=>mysqli_errno($conn)]);
+        lib\Response::send(-2, 'fail,请联系管理员：ecnulostfound@163.com',['sql'=>$sql_insert_openid,'error'=>mysqli_errno($conn)]);
     }
 	//echo json_encode($tag);
     lib\Response::send(0, 'success',['tag'=>$tag, 'user'=>$res_user]);
