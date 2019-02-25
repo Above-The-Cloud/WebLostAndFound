@@ -31,7 +31,7 @@ class SensitiveWordDetection
         array_push($headers, "Authorization:APPCODE " . $appcode);
         //根据API的要求，定义相对应的Content-Type
         array_push($headers, "Content-Type".":"."application/x-www-form-urlencoded; charset=UTF-8");
-        $querys = "";
+//        $querys = "";
         $bodys = "src=".$querys;
         $url = $host . $path;
 
@@ -49,8 +49,6 @@ class SensitiveWordDetection
         }
         curl_setopt($curl, CURLOPT_POSTFIELDS, $bodys);
         $response = curl_exec($curl);
-        $log = new \lib\Log();
-        $log->debug(json_encode($response));
         if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == '200') {
             list($resHeader, $resBody) = explode("\r\n\r\n", $response, 2);
         }
