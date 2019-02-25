@@ -1,8 +1,8 @@
 <?php
 	$data = $_GET;
 	//echo json_encode($data);
-	$appid="wxd4a02c9d70b821e8";
-	$appsecret="5c67cffb86a2e9d07f75d13b79218200";
+	$appid="wxd8d5a2f6fa7f1878";
+	$appsecret="064157612113b2490b1941c7b0e77fda";
 	$code=$_GET['code'];
 	$get_url="https://api.weixin.qq.com/sns/jscode2session?appid=".$appid."&secret=".$appsecret."&js_code=".$code."&grant_type=authorization_code";
 	$get_return = file_get_contents($get_url);
