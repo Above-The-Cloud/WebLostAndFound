@@ -24,7 +24,8 @@ class SensitiveWordDetection
 
     public static function send($querys){
         $host = "http://apistore.tongchengyue.com";
-        $path = "/sw/isContains";
+//        $path = "/sw/isContains";
+        $path = "/swc/doFilter";
         $method = "POST";
         $appcode = "f560138f1b514ca98e7cf8ca12a23d85";
         $headers = array();
