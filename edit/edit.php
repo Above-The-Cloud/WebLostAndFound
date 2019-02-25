@@ -19,8 +19,12 @@ $category = $_GET['category'];
 $title = $_GET['title'];
 $msg = $_GET['msg'];
 $ie = $_GET['image_exist'];
+$swc=0;
+if(isset($_GET['swc'])){
+    $swc=$_GET['swc'];
+}
 
-$res = \lib\SensitiveWordDetection::send($title.$msg);
+$res = \lib\SensitiveWordDetection::send($title.$msg, $swc);
 
 if($res['status']='00000'){
     if($res['result']==true){

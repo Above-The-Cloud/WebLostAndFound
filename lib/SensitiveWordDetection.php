@@ -22,10 +22,14 @@ class SensitiveWordDetection
         $this->log = new \lib\Log();
     }
 
-    public static function send($querys){
+    public static function send($querys, $swc){
         $host = "http://apistore.tongchengyue.com";
-//        $path = "/sw/isContains";
-        $path = "/swc/doFilter";
+        $path = "/sw/isContains";
+        if($swc){
+            $path = "/swc/doFilter";
+        }else{
+            $path = "/sw/isContains";
+        }
         $method = "POST";
         $appcode = "f560138f1b514ca98e7cf8ca12a23d85";
         $headers = array();
