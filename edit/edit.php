@@ -20,12 +20,15 @@ $title = $_GET['title'];
 $msg = $_GET['msg'];
 $ie = $_GET['image_exist'];
 
-$res = \lib\SensitiveWordDetection::send($title.$msg);
+$res = \lib\SensitiveWordDetection::sendSwc($title.$msg);
 
 if($res['status']='00000'){
-    if($res['result']==true){
-        $rr->send(-2,"您所发的内容包含敏感词汇！",$res);
-    }
+//    if($res['result']==true){
+//        $rr->send(-2,"您所发的内容包含敏感词汇！",$res);
+//    }
+    $msg = $res['result'];
+    $log = new \lib\Log();
+    $log->debug(json_encode($res));
 }else{
     $rr->send(-1,"网络错误，请稍后重试！",$res);
 }
